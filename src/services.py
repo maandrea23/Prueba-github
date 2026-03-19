@@ -1,9 +1,9 @@
-#Importing validations
+# Importing validations
 from validations import validate_int_over_0, validate_not_empty
-#Creating provitional list to work the functions
+# Creating provitional list to work the functions
 operations = []
 balance = 0
-#Function for income uses validations on the valitadions file and adds the values to a local dictionary to add this dictionary to the list operations
+# Function for income uses validations on the valitadions file and adds the values to a local dictionary to add this dictionary to the list operations
 def income(operations, balance):
     value = validate_int_over_0("Insert your income please: ")
     concept = validate_not_empty("Insert the concept of the income: ")
@@ -15,7 +15,7 @@ def income(operations, balance):
     operations.append(local_dictionary)
     return balance
 
-#Function for outcome uses validations on the valitadions file and adds the values to a local dictionary to add this dictionary to the list operations
+# Function for outcome uses validations on the valitadions file and adds the values to a local dictionary to add this dictionary to the list operations
 def outcome(operations, balance):
     value = validate_int_over_0("Insert your outcome please: ")
     concept = validate_not_empty("Insert the concept of the outcome: ")
@@ -27,8 +27,19 @@ def outcome(operations, balance):
     operations.append(local_dictionary)
     return balance
 
+# Function to show the movements contened in the list operations
+def show_movements(operations):
+    index = 1
+    for operation in operations:
+        print(f"{index}. {list(operation.values())}")
+        index+=1
 
-for i in range (3):
-    balance=income(operations, balance)
+
+
+for i in range (2):
+    balance=outcome(operations, balance)
 print(operations)
 print("Balance final: ", balance)
+
+show_movements(operations)
+
