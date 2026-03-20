@@ -56,7 +56,7 @@ def edit_movements(operations, balance):
         else:
             break
 
-    type_of_operation = validate_type_of_operation("Insert 1 for income or 2 for outcome")
+    type_of_operation = validate_type_of_operation("Insert 1 for income or 2 for outcome: ")
     if type_of_operation ==1:
         value = validate_positive_int("Insert your income please: ")
         concept = validate_not_empty("Insert the concept of the income: ")
@@ -67,12 +67,12 @@ def edit_movements(operations, balance):
         operations[operation_to_edit]["type"] = "income"
     else:
         value = validate_positive_int("Insert your outcome please: ")
-        if value> balance:  
+        if value < balance:  
             concept = validate_not_empty("Insert the concept of the outcome: ")
             balance = balance - value - current_value
             operations[operation_to_edit]["value"] = -value
             operations[operation_to_edit]["concept"] = concept
-            operations[operation_to_edit]["type"] = "income"
+            operations[operation_to_edit]["type"] = "outcome"
         else:
             print("You don't have enough balance to have this outcome, returning to menu...") 
             return
