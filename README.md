@@ -23,6 +23,8 @@ project/
 ├─ Group_2.md
 
 ```
+## VERSION
+Version V1.0
 
 ## 👩🏻‍💻 GITHUB LINK
 [Enlace](https://github.com/maandrea23/Prueba-github.git)
