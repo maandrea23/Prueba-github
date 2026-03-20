@@ -19,3 +19,16 @@ def validate_not_empty(message):
                 print("Please write something")
         except ValueError:
             print("Please write something")
+            
+def validate_option():
+    while True:
+        try:
+            option = int(input("Select an option: "))
+            if option > 0 and option <= 6:
+                print("Option validate :)")
+                break
+            else: 
+                print("select valid option")
+        except ValueError:
+            print("Invalid option, pelase try again")
+validate_option()
