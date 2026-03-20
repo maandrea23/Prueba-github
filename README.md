@@ -8,7 +8,7 @@ This system consint in regarding each incomes and expenses, for have a control a
 Enter in VS and clone the repository from the terminal using git clone [URL]
 
 ## 🧩 USING
-This program has the objective manage expenses and incomes in just one application,is important to aclarify this program doesnt have memory. The program consist in two menus; the first one is going to show 4 options: register incomes, outcomes, more options, exit  and the balance. The second menu is from more options: show, edit, search, delete and exit. 
+This program has the objective manage expenses and incomes in just one application,is important to aclarify this program doesnt have memory. The program consist in one menu tha is going to show: register incomes, outcomes,show, edit,delete, exit  and the balance. 
 the user has to choose what want to do.
 ##  📂 STRUCTURE 
 ```
