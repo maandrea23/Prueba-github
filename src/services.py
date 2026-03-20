@@ -30,13 +30,14 @@ def outcome(operations, balance):
     else:
         print("You don't have enough balance to have this outcome") 
 
-# Function to show the movements contened in the list operations
+# Function to show the operations contened in the list operations
 def show_movements(operations):
     index = 1
     for operation in operations:
         print(f"{index}. {list(operation.values())}")
         index+=1
 
+# Function to edit an operation contened in the list operations
 def edit_movements(operations, balance):
     show_movements(operations)
     index= len(operations)
@@ -69,6 +70,20 @@ def edit_movements(operations, balance):
             return
     return balance
 
+# Function to delete an operation contened in the list operations
+def delete_operation(operations, balance):
+    show_movements(operations)
+    index= len(operations)
+    while True:
+        operation_to_delete = validate_int_over_0("Insert the number of the operation to delete: ") -1
+        if operation_to_delete> index:
+            print(f"Select a number between 1 and {index}")
+        else:
+            break
+    operation_deleted = operations.pop(operation_to_delete)
+    current_value= operation_deleted["value"]
+    balance = balance - current_value
+    return balance
 
 
 
@@ -78,6 +93,8 @@ for i in range (2):
 
 print(f"Total balance: ${balance}")
 
-balance = edit_movements(operations, balance)
+balance = delete_operation(operations, balance)
 
 print(f"Final edited balance: ${balance}")
+
+
