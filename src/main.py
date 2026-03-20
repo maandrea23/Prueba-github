@@ -8,5 +8,4 @@ def main():
     print(f"Final balance: ${balance}")
     print("Thanks for using the app!")
 
-if __name__ == "__main__":
-    main()
+main()
