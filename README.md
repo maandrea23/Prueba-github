@@ -24,5 +24,5 @@ project/
 
 ```
 
-## 👩🏻‍💻 ENLACE DE GITHUB
+## 👩🏻‍💻 GITHUB LINK
 [Enlace](https://github.com/maandrea23/Prueba-github.git)
