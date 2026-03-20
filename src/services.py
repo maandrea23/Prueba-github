@@ -1,8 +1,7 @@
 # Importing validations
 from validations import validate_int_over_0, validate_not_empty, validate_type_of_operation
 # Creating provitional list to work the functions
-operations = []
-balance = 0
+
 # Function for income uses validations on the valitadions file and adds the values to a local dictionary to add this dictionary to the list operations
 def income(operations, balance):
     value = validate_int_over_0("Insert your income please: ")
@@ -88,13 +87,13 @@ def delete_operation(operations, balance):
 
 
 
-for i in range (2):
-    balance=income(operations, balance)
+# for i in range (2):
+#     balance=income(operations, balance)
 
-print(f"Total balance: ${balance}")
+# print(f"Total balance: ${balance}")
 
-balance = delete_operation(operations, balance)
+# balance = delete_operation(operations, balance)
 
-print(f"Final edited balance: ${balance}")
+# print(f"Final edited balance: ${balance}")
 
 

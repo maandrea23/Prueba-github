@@ -1,3 +1,5 @@
+from menu import show_menu
 
-from menu import menu 
-
+operations = []
+balance = 0
+menu = show_menu(operations, balance)

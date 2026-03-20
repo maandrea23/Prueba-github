@@ -1,6 +1,7 @@
-from validations import validate_option                  
+from validations import validate_option, validate_type_of_operation, validate_not_empty     
+from services import income, outcome,show_movements, edit_movements, delete_operation         
 balance=0
-def show_menu():
+def show_menu(operations, balance):
     while True:
         print("\n\t.:MENU:.")
         print(f"This is your current balance: ${balance}")
@@ -13,7 +14,7 @@ def show_menu():
         option = validate_option()
     
         if option == 1:
-            print("💰")
+            balance = income(operations, balance)
         elif option == 2:
             print("💸") 
         elif option == 3:
@@ -23,7 +24,7 @@ def show_menu():
         elif option == 5:
             print()
         elif option == 6:
-            print("See you soon!!! 👋🏻")
+
             break
         else:
             print("Invalid option ❌ \nInsert a valid option.")
