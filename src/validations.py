@@ -1,9 +1,10 @@
-def validate_int_over_0(message):
+
+def validate_positive_int(message):
     while True:
         try:
             value = int(input(message))
-            if value<=0:
-                print("Invalid input, please enter an integer.")
+            if value <= 0:
+                print("Invalid input, please enter a positive integer.")
             else:
                 return value
         except ValueError:
@@ -24,21 +25,21 @@ def validate_option():
     while True:
         try:
             option = int(input("Select an option: "))
-            if option > 0 and option <= 6:
-                print("Option validate :)")
-                break
+            if 1 <= option <= 6:
+                return option
             else: 
-                print("select valid option")
+                print("Select a valid option")
         except ValueError:
-            print("Invalid option, pelase try again")
+            print("Invalid option, please try again")
 
 def validate_type_of_operation(message):
     while True:
         try:
             type_of_operation = int(input(message))
-            if type_of_operation > 2 and type_of_operation <1:
-                print("Invalid number")
-            else:
+            if type_of_operation == 1 or type_of_operation == 2:
                 return type_of_operation
+            else:
+                print("Invalid number. Select 1 for income or 2 for outcome.")
         except ValueError:
             print("Invalid number")
+

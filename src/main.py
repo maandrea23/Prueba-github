@@ -1,5 +1,12 @@
 from menu import show_menu
 
-operations = []
-balance = 0
-menu = show_menu(operations, balance)
+def main():
+    operations = []
+    balance = 0
+    print("Welcome to Personal Finance Tracker!")
+    balance = show_menu(operations, balance)
+    print(f"Final balance: ${balance}")
+    print("Thanks for using the app!")
+
+if __name__ == "__main__":
+    main()

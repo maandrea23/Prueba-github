@@ -1,99 +1,96 @@
 # Importing validations
-from validations import validate_int_over_0, validate_not_empty, validate_type_of_operation
-# Creating provitional list to work the functions
+from validations import validate_positive_int, validate_not_empty, validate_type_of_operation
 
-# Function for income uses validations on the valitadions file and adds the values to a local dictionary to add this dictionary to the list operations
+# Function for income: adds to operations and balance
 def income(operations, balance):
-    value = validate_int_over_0("Insert your income please: ")
+    value = validate_positive_int("Insert your income please: ")
     concept = validate_not_empty("Insert the concept of the income: ")
-    balance = balance + value
-    local_dictionary = {}
-    local_dictionary["value"] = value
-    local_dictionary["concept"] = concept
-    local_dictionary["type"] = "Income"
-    operations.append(local_dictionary)
+    balance += value
+    operation = {
+        "value": value,
+        "concept": concept,
+        "type": "Income"
+    }
+    operations.append(operation)
+    print(f"Income registered. New balance: ${balance}")
     return balance
 
-# Function for outcome uses validations on the valitadions file and adds the values to a local dictionary to add this dictionary to the list operations
+# Function for outcome: checks balance first
 def outcome(operations, balance):
-    value = validate_int_over_0("Insert your outcome please: ")
-    if value> balance:  
-        concept = validate_not_empty("Insert the concept of the outcome: ")
-        balance = balance - value
-        local_dictionary = {}
-        local_dictionary["value"] = -value
-        local_dictionary["concept"] = concept
-        local_dictionary["type"] = "outcome"
-        operations.append(local_dictionary)
+    value = validate_positive_int("Insert your outcome please: ")
+    if value > balance:
+        print("You don't have enough balance for this outcome.")
         return balance
-    else:
-        print("You don't have enough balance to have this outcome") 
+    concept = validate_not_empty("Insert the concept of the outcome: ")
+    balance -= value
+    operation = {
+        "value": -value,
+        "concept": concept,
+        "type": "Outcome"
+    }
+    operations.append(operation)
+    print(f"Outcome registered. New balance: ${balance}")
+    return balance
 
-# Function to show the operations contened in the list operations
+# Show movements
 def show_movements(operations):
-    index = 1
-    for operation in operations:
-        print(f"{index}. {list(operation.values())}")
-        index+=1
+    if not operations:
+        print("No movements yet.")
+        return
+    print("\nMovements:")
+    for i, op in enumerate(operations, 1):
+        sign = "+" if op["value"] > 0 else "-"
+        print(f"{i}. {op['type']}: {sign}${abs(op['value'])} - {op['concept']}")
 
-# Function to edit an operation contened in the list operations
+# Edit movement
 def edit_movements(operations, balance):
+    if not operations:
+        print("No movements to edit.")
+        return balance
     show_movements(operations)
-    index= len(operations)
+    n = len(operations)
     while True:
-        operation_to_edit = validate_int_over_0("Insert the number of the operation to edit: ") -1
-        if operation_to_edit> index:
-            print(f"Select a number between 1 and {index}")
-        else:
+        idx = validate_positive_int(f"Enter number (1-{n}) to edit: ") - 1
+        if 0 <= idx < n:
             break
+        print(f"Select between 1 and {n}")
+    
+    type_op = validate_type_of_operation("1 for income, 2 for outcome: ")
+    value = validate_positive_int("Enter new value: ")
+    concept = validate_not_empty("Enter new concept: ")
+    
+    current_value = operations[idx]["value"]
+    delta = value if type_op == 1 else -value
+    new_balance = balance + delta - current_value
+    
+    # Check if outcome exceeds balance
+    if type_op == 2 and value > new_balance:
+        print("Not enough balance for this outcome.")
+        return balance
+    
+    operations[idx] = {
+        "value": delta,
+        "concept": concept,
+        "type": "Income" if type_op == 1 else "Outcome"
+    }
+    print(f"Operation edited. New balance: ${new_balance}")
+    return new_balance
 
-    type_of_operation = validate_type_of_operation("Insert 1 for income or 2 for outcome")
-    if type_of_operation ==1:
-        value = validate_int_over_0("Insert your income please: ")
-        concept = validate_not_empty("Insert the concept of the income: ")
-        current_value = operations[operation_to_edit]["value"]
-        balance = balance + value - current_value
-        operations[operation_to_edit]["value"] = value
-        operations[operation_to_edit]["concept"] = concept
-        operations[operation_to_edit]["type"] = "income"
-    else:
-        value = validate_int_over_0("Insert your outcome please: ")
-        if value> balance:  
-            concept = validate_not_empty("Insert the concept of the outcome: ")
-            balance = balance - value - current_value
-            operations[operation_to_edit]["value"] = -value
-            operations[operation_to_edit]["concept"] = concept
-            operations[operation_to_edit]["type"] = "income"
-        else:
-            print("You don't have enough balance to have this outcome, returning to menu...") 
-            return
-    return balance
-
-# Function to delete an operation contened in the list operations
+# Delete operation
 def delete_operation(operations, balance):
+    if not operations:
+        print("No movements to delete.")
+        return balance
     show_movements(operations)
-    index= len(operations)
+    n = len(operations)
     while True:
-        operation_to_delete = validate_int_over_0("Insert the number of the operation to delete: ") -1
-        if operation_to_delete> index:
-            print(f"Select a number between 1 and {index}")
-        else:
+        idx = validate_positive_int(f"Enter number (1-{n}) to delete: ") - 1
+        if 0 <= idx < n:
             break
-    operation_deleted = operations.pop(operation_to_delete)
-    current_value= operation_deleted["value"]
-    balance = balance - current_value
+        print(f"Select between 1 and {n}")
+    
+    deleted = operations.pop(idx)
+    balance -= deleted["value"]  # Since value is negative for outcome, adds back
+    print(f"Operation deleted. New balance: ${balance}")
     return balance
-
-
-
-
-# for i in range (2):
-#     balance=income(operations, balance)
-
-# print(f"Total balance: ${balance}")
-
-# balance = delete_operation(operations, balance)
-
-# print(f"Final edited balance: ${balance}")
-
 
