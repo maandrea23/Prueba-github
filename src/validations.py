@@ -31,4 +31,3 @@ def validate_option():
                 print("select valid option")
         except ValueError:
             print("Invalid option, pelase try again")
-validate_option()
