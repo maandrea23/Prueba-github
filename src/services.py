@@ -67,7 +67,7 @@ def edit_movements(operations, balance):
         operations[operation_to_edit]["type"] = "income"
     else:
         value = validate_positive_int("Insert your outcome please: ")
-        if value < balance:  
+        if value <= balance:  
             concept = validate_not_empty("Insert the concept of the outcome: ")
             balance = balance - value - current_value
             operations[operation_to_edit]["value"] = -value
