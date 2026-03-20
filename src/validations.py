@@ -8,7 +8,7 @@ def validate_positive_int(message):
             else:
                 return value
         except ValueError:
-            print("Invalid input, please enter an integer.")
+            print("Invalid input, please enter a positive integer.")
 
 def validate_not_empty(message):
     while True:
