@@ -31,3 +31,14 @@ def validate_option():
                 print("select valid option")
         except ValueError:
             print("Invalid option, pelase try again")
+
+def validate_type_of_operation(message):
+    while True:
+        try:
+            type_of_operation = int(input(message))
+            if type_of_operation > 2 and type_of_operation <1:
+                print("Invalid number")
+            else:
+                return type_of_operation
+        except ValueError:
+            print("Invalid number")
